@@ -24,3 +24,7 @@ export const navbarLinks = [
     text: 'Enterprise',
   },
 ];
+
+export const clients = [...new Array(10)].map((client, idx) => ({
+  href: `/images/client-${idx + 1}.png`,
+}));

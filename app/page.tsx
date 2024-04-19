@@ -1,4 +1,7 @@
+import { clients } from '@/utils/constants';
+
 import HeroSection from '@/sections/hero-section';
+import InfiniteMovingCards from '@/components/global/infinite-moving-cards';
 import Navbar from '@/components/global/navbar';
 
 export default function Home() {
@@ -7,6 +10,13 @@ export default function Home() {
       <Navbar />
 
       <HeroSection />
+
+      <InfiniteMovingCards
+        className="mt-[-100px] md:mt-40"
+        items={clients}
+        direction="right"
+        speed="slow"
+      />
     </main>
   );
 }
