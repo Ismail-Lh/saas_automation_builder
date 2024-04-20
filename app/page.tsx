@@ -2,6 +2,7 @@ import { clients } from '@/utils/constants';
 
 import HeroParallaxSection from '@/sections/hero-parallax-section';
 import HeroSection from '@/sections/hero-section';
+import LampSection from '@/sections/lamp-section';
 import InfiniteMovingCards from '@/components/global/infinite-moving-cards';
 import Navbar from '@/components/global/navbar';
 
@@ -20,6 +21,8 @@ export default function Home() {
       />
 
       <HeroParallaxSection />
+
+      <LampSection />
     </main>
   );
 }
