@@ -16,7 +16,7 @@ export default function Home() {
       <HeroSection />
 
       <InfiniteMovingCards
-        className="mt-[-100px] md:mt-40"
+        className="mt-[-100px] md:mt-[30rem]"
         items={clients}
         direction="right"
         speed="slow"
