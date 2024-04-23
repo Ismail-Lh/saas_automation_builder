@@ -6,6 +6,8 @@ import LampSection from '@/sections/lamp-section';
 import InfiniteMovingCards from '@/components/global/infinite-moving-cards';
 import Navbar from '@/components/global/navbar';
 
+// import PricingCardsSection from '@/sections/pricing-cards-section';
+
 export default function Home() {
   return (
     <main className="flex flex-col items-center justify-center">
@@ -23,6 +25,8 @@ export default function Home() {
       <HeroParallaxSection />
 
       <LampSection />
+
+      {/* <PricingCardsSection/> */}
     </main>
   );
 }
