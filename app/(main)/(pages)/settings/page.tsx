@@ -1,8 +1,17 @@
 import React from 'react';
 
 import ProfileForm from '@/components/forms/profile-form';
+import ProfilePicture from './_components/profile-picture';
 
 function SettingsPage() {
+  const deleteProfileImage = async () => {
+    'use server';
+  };
+
+  const uploadProfileImage = async (image: string) => {
+    'use server';
+  };
+
   return (
     <div className="flex flex-col gap-4">
       <h1 className="sticky top-0 z-10 flex items-center border-b bg-background/50 p-6 text-4xl backdrop-blur-lg">
@@ -16,6 +25,11 @@ function SettingsPage() {
             Add or update your information
           </p>
         </div>
+        <ProfilePicture
+          onDelete={deleteProfileImage}
+          userImage=""
+          onUpload={uploadProfileImage}
+        />
         <ProfileForm />
       </div>
     </div>
