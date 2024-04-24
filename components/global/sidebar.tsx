@@ -14,6 +14,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import ModeToggle from './mode-toggle';
 
 function Sidebar() {
   const pathName = usePathname();
@@ -83,7 +84,7 @@ function Sidebar() {
       </div>
 
       <div className="flex flex-col items-center justify-center gap-8">
-        {/* <ModeToggle /> */}
+        <ModeToggle />
       </div>
     </nav>
   );
