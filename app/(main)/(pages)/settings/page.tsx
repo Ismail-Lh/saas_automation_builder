@@ -1,11 +1,17 @@
 import React from 'react';
 
+import prisma from '@/lib/prisma-db';
 import ProfileForm from '@/components/forms/profile-form';
 import ProfilePicture from './_components/profile-picture';
 
 function SettingsPage() {
   const deleteProfileImage = async () => {
     'use server';
+
+    const response = await prisma.user.update({
+      where: { clerkId: '' },
+      data: { profileImage: '' },
+    });
   };
 
   const uploadProfileImage = async (image: string) => {
