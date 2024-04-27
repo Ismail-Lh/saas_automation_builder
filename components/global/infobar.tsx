@@ -1,4 +1,5 @@
 import React from 'react';
+import { UserButton } from '@clerk/nextjs';
 import { Book, Headphones, Search } from 'lucide-react';
 
 import { Input } from '../ui/input';
@@ -39,6 +40,8 @@ function InfoBar() {
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
+
+      <UserButton />
     </div>
   );
 }
