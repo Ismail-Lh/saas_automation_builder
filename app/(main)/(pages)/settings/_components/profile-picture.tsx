@@ -22,7 +22,7 @@ function ProfilePicture({
   const router = useRouter();
 
   const onDeleteProfileImage = async () => {
-    await onDelete();
+    onDelete();
     router.refresh();
   };
 

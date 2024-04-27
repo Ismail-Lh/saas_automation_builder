@@ -1,21 +1,51 @@
 import React from 'react';
+import { currentUser } from '@clerk/nextjs/server';
+import { User } from '@prisma/client';
 
 import prisma from '@/lib/prisma-db';
 import ProfileForm from '@/components/forms/profile-form';
 import ProfilePicture from './_components/profile-picture';
 
-function SettingsPage() {
+async function SettingsPage() {
+  const authUser = await currentUser();
+
+  if (!authUser) return null;
+
+  const user = (await prisma.user.findUnique({
+    where: { clerkId: authUser.id },
+  })) as User;
+
   const deleteProfileImage = async () => {
     'use server';
 
     const response = await prisma.user.update({
-      where: { clerkId: '' },
+      where: { clerkId: authUser.id },
       data: { profileImage: '' },
     });
+
+    return response;
   };
 
   const uploadProfileImage = async (image: string) => {
     'use server';
+
+    const response = await prisma.user.update({
+      where: { clerkId: authUser.id },
+      data: { profileImage: image },
+    });
+
+    return response;
+  };
+
+  const updateUserInfo = async (name: string, email: string) => {
+    'use server';
+
+    const response = await prisma.user.update({
+      where: { clerkId: authUser.id },
+      data: { name, email },
+    });
+
+    return response;
   };
 
   return (
@@ -33,10 +63,10 @@ function SettingsPage() {
         </div>
         <ProfilePicture
           onDelete={deleteProfileImage}
-          userImage=""
+          userImage={user?.profileImage || ''}
           onUpload={uploadProfileImage}
         />
-        <ProfileForm />
+        <ProfileForm user={user} onUpdate={updateUserInfo} />
       </div>
     </div>
   );

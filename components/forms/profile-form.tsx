@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { User } from '@prisma/client';
 import { Loader2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -19,25 +20,43 @@ import {
 
 const formSchema = z.object({
   name: z.string().min(3, 'Required'),
-  email: z.string().email('Required'),
+  email: z.string().email(),
 });
 
-function ProfileForm() {
+type ProfileFormProps = {
+  user: User;
+  onUpdate: (name: string, email: string) => any;
+};
+
+function ProfileForm({ user, onUpdate }: ProfileFormProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     mode: 'onChange',
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: '',
-      email: '',
+      name: user.name ?? '',
+      email: user.email,
     },
   });
+
+  const handelSubmit = async (data: z.infer<typeof formSchema>) => {
+    setIsLoading(true);
+    await onUpdate(data.name, data.email);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    form.reset({
+      name: user.name ?? '',
+      email: user.email,
+    });
+  }, [user, form]);
   return (
     <Form {...form}>
       <form
         className="flex flex-col gap-6"
-        onSubmit={() => console.log('hello')}
+        onSubmit={form.handleSubmit(handelSubmit)}
       >
         <FormField
           disabled={isLoading}
