@@ -1,13 +1,27 @@
 'use client';
 
 import React from 'react';
+import { useModal } from '@/context/modal-context';
 import { Plus } from 'lucide-react';
 
+import CustomModal from '@/components/global/custom-modal';
 import { Button } from '@/components/ui/button';
 
 function WorkflowButton() {
+  const { setOpen, setClose } = useModal();
+
+  const handleClick = () => {
+    setOpen(
+      <CustomModal
+        title="Create a Workflow Automation"
+        subTitle="Workflow automation helps you automate your business processes."
+      >
+        hello
+      </CustomModal>
+    );
+  };
   return (
-    <Button size="icon">
+    <Button size="icon" onClick={handleClick}>
       <Plus />
     </Button>
   );
