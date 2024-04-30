@@ -4,6 +4,7 @@ import React from 'react';
 import { useModal } from '@/context/modal-context';
 import { Plus } from 'lucide-react';
 
+import WorkflowForm from '@/components/forms/workflow-form';
 import CustomModal from '@/components/global/custom-modal';
 import { Button } from '@/components/ui/button';
 
@@ -16,7 +17,7 @@ function WorkflowButton() {
         title="Create a Workflow Automation"
         subTitle="Workflow automation helps you automate your business processes."
       >
-        hello
+        <WorkflowForm />
       </CustomModal>
     );
   };
