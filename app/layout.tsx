@@ -3,7 +3,7 @@ import { DM_Sans } from 'next/font/google';
 
 import './globals.css';
 
-import { ModelProvider } from '@/context/model-Context';
+import { ModalProvider } from '@/context/modal-context';
 import { ThemeProvider } from '@/providers/theme-provider';
 import { ClerkProvider } from '@clerk/nextjs';
 
@@ -29,7 +29,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <ModelProvider>{children}</ModelProvider>
+            <ModalProvider>{children}</ModalProvider>
           </ThemeProvider>
         </body>
       </html>

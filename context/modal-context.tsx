@@ -10,20 +10,20 @@ import React, {
 
 export type ModalData = {};
 
-type ModelContextType = {
+type ModalContextType = {
   data: ModalData;
   isOpen: boolean;
   setOpen: (modal: React.ReactNode, fetchData?: () => Promise<any>) => void;
   setClose: () => void;
 };
 
-const ModelContext = createContext<ModelContextType | undefined>(undefined);
+const ModalContext = createContext<ModalContextType | undefined>(undefined);
 
-type ModelProviderProps = {
+type ModalProviderProps = {
   children: React.ReactNode;
 };
 
-export function ModelProvider({ children }: ModelProviderProps) {
+export function ModalProvider({ children }: ModalProviderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState<ModalData>({});
   const [showModal, setShowModal] = useState<React.ReactNode | null>(null);
@@ -58,18 +58,18 @@ export function ModelProvider({ children }: ModelProviderProps) {
   if (!isMounted) return null;
 
   return (
-    <ModelContext.Provider value={contextValue}>
+    <ModalContext.Provider value={contextValue}>
       {children}
       {showModal}
-    </ModelContext.Provider>
+    </ModalContext.Provider>
   );
 }
 
-export const useModel = () => {
-  const context = useContext(ModelContext);
+export const useModal = () => {
+  const context = useContext(ModalContext);
 
   if (context === undefined) {
-    throw new Error('useModel must be used within a modelProvider');
+    throw new Error('useModal must be used within a modalProvider');
   }
   return context;
 };
