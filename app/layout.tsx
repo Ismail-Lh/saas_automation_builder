@@ -3,6 +3,7 @@ import { DM_Sans } from 'next/font/google';
 
 import './globals.css';
 
+import { ModelProvider } from '@/context/model-Context';
 import { ThemeProvider } from '@/providers/theme-provider';
 import { ClerkProvider } from '@clerk/nextjs';
 
@@ -22,14 +23,13 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={font.className}>
-          {' '}
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <ModelProvider>{children}</ModelProvider>
           </ThemeProvider>
         </body>
       </html>
