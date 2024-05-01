@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Workflows from './_components';
 import WorkflowButton from './_components/workflow-button';
 
 function WorkflowsPage() {
@@ -9,6 +10,8 @@ function WorkflowsPage() {
         <h1>Workflows</h1>
         <WorkflowButton />
       </div>
+
+      <Workflows />
     </div>
   );
 }
