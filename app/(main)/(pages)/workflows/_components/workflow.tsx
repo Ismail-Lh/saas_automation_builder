@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,19 +10,20 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
 
 type WorkflowCardProps = {
   id: string;
   name: string;
   description: string;
-  publish: boolean | null;
+  publish: boolean;
 };
 
 function WorkflowCard({ id, name, description, publish }: WorkflowCardProps) {
   return (
-    <Card className="flex w-full items-center justify-between">
+    <Card className="flex w-full items-center justify-between ">
       <CardHeader className="flex flex-col gap-4">
-        {' '}
         <Link href={`/workflows/editor/${id}`}>
           <div className="flex flex-row gap-2">
             <Image
@@ -51,6 +54,14 @@ function WorkflowCard({ id, name, description, publish }: WorkflowCardProps) {
           </div>
         </Link>
       </CardHeader>
+
+      <div className="flex flex-col items-center gap-2 p-6">
+        <Label className="text-muted-foreground" htmlFor="publish">
+          Publish
+        </Label>
+
+        <Switch id="publish" onClick={() => {}} defaultChecked={publish} />
+      </div>
     </Card>
   );
 }

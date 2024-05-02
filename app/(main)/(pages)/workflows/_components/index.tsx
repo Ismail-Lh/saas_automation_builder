@@ -4,8 +4,8 @@ import WorkflowCard from './workflow';
 
 function Workflows() {
   return (
-    <div className="fle flex-col gap-4">
-      <section className="flex flex-col gap-4 p-6">
+    <div className="flex flex-col gap-4">
+      <section className="m-2 flex flex-col">
         <WorkflowCard
           id="1f2e1fefe"
           name="Automation workflow"
